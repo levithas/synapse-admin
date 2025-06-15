@@ -237,8 +237,7 @@ const LoginPage = () => {
             label="synapseadmin.auth.base_url"
             select={allowMultipleBaseUrls}
             autoComplete="url"
-            disabled={loading}
-            readOnly={allowSingleBaseUrl}
+            disabled={loading || allowSingleBaseUrl}
             resettable={allowAnyBaseUrl}
             validate={[required(), validateBaseUrl]}
           >
