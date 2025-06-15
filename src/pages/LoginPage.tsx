@@ -232,15 +232,16 @@ const LoginPage = () => {
           />
         </Box>
         <Box>
-          <TextInput
-            source="base_url"
-            label="synapseadmin.auth.base_url"
-            select={allowMultipleBaseUrls}
-            autoComplete="url"
-            disabled={loading || allowSingleBaseUrl}
-            resettable={allowAnyBaseUrl}
-            validate={[required(), validateBaseUrl]}
-          >
+          {!allowSingleBaseUrl && (
+            <TextInput
+              source="base_url"
+              label="synapseadmin.auth.base_url"
+              select={allowMultipleBaseUrls}
+              autoComplete="url"
+              disabled={loading}
+              resettable={allowAnyBaseUrl}
+              validate={[required(), validateBaseUrl]}
+            >
             {allowMultipleBaseUrls &&
               restrictBaseUrl.map(url => (
                 <MenuItem key={url} value={url}>
@@ -248,6 +249,7 @@ const LoginPage = () => {
                 </MenuItem>
               ))}
           </TextInput>
+          )}
         </Box>
         <Typography className="serverVersion">{serverVersion}</Typography>
         <Typography className="matrixVersions">{matrixVersions}</Typography>
